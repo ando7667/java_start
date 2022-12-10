@@ -50,15 +50,29 @@ public class Task2 {
         }
 
         public int pop() {
-            return 0;
+            if (out.isEmpty()) {
+                while (!in.isEmpty()) {
+                    out.push(in.pop());
+                }
+            }
+            return out.pop();
         }
 
         public int peek() {
-            return 0;
+            if (out.isEmpty()) {
+                while (!in.isEmpty()) {
+                    out.push(in.pop());
+                }
+            }
+            return out.peek();
         }
 
         public boolean empty() {
-            return false;
+            if (in.isEmpty() && out.isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
