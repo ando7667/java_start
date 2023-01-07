@@ -1,17 +1,21 @@
 package HomeWork7;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Year;
-import java.util.Date;
+import java.util.Iterator;
+import java.util.UUID;
 
-public abstract class Person {
+public abstract class Person implements Iterator<String> {
+
     enum Gender {
         male, female
     }
 
+    // генерация строкового идентификатора
+    // вызывается из конструктора класса (при создании экземпляра класса)
+    private String genuid() {
+        return UUID.randomUUID().toString();
+    }
 
+    String uidPerson;
     String firstName;
     String lastName;
     String patronymic;
@@ -30,6 +34,7 @@ public abstract class Person {
      * @param age      возраст
      */
     public Person(String first, String last, String patron, Gender gender, String birthday, int age) {
+        this.uidPerson = genuid();
         this.firstName = first;
         this.lastName = last;
         this.patronymic = patron;
@@ -39,10 +44,16 @@ public abstract class Person {
     }
 
     public Person(String first) {
+        this.uidPerson = genuid();
         this.firstName = first;
     }
-    public Person() {
 
+    public String getUidPerson() {
+        return uidPerson;
+    }
+
+    public Person() {
+        this.uidPerson = genuid();
     }
 
     public String getFirstName() {
@@ -97,9 +108,45 @@ public abstract class Person {
         return this.firstName;
     }
 
+    // переопределяем методы hasNext() и next() интерфейса Iterator для нашего класса
+    int index;
+
+    @Override
+    public boolean hasNext() {
+        return index++ < 7;
+    }
+
+    @Override
+    public String next() {
+        switch (index) {
+            case 1:
+                //return uidPerson;
+                return String.format("uidPerson: %s", uidPerson);
+            case 2:
+                //return firstName;
+                return String.format("firstName: %s", firstName);
+            case 3:
+                //return lastName;
+                return String.format("lastName: %s", lastName);
+            case 4:
+                //return age;
+                return String.format("patronymic: %d", patronymic);
+            case 5:
+                //return gender;
+                return String.format("gender: %s", gender);
+            case 6:
+                //return birthday;
+                return String.format("birthday: %s", birthday);
+            default:
+                //return age;
+                return String.format("age: %d", age);
+
+        }
+    }
+
     @Override
     public String toString() {
-        return String.format("<%s %s %s %s %s %d>", firstName, lastName, patronymic, gender, birthday, age);
+        return String.format("<%s %s %s %s %s %s %d>", getUidPerson(), firstName, lastName, patronymic, gender, birthday, age);
     }
 
 }
