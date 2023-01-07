@@ -1,12 +1,9 @@
 package HomeWork7;
 
-public class Female extends Person {
-    public Female(String first) {
-        this.firstName = first;
-        this.gender = Gender.female;
-    }
+public interface Female {
 
-    public String apper() {
+    default String apper() {
         return "Она";
     }
+
 }

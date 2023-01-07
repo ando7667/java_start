@@ -4,11 +4,11 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Female irina = new Female("Ирина");
-        Male vasya = new Male("Вася");
-        Female masha = new Female("Маша");
-        Female jane = new Female("Женя");
-        Male ivan = new Male("Ваня");
+        Person irina = new Wife("Ирина");
+        Person vasya = new Father("Вася");
+        Person masha = new Daughter("Маша");
+        Person jane = new Daughter("Женя");
+        Person ivan = new Son("Иван");
         vasya.setBirthday("15.12.1975");
         vasya.setLastName("Сидоров");
 
