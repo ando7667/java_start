@@ -3,7 +3,7 @@ package HomeWork7;
 import java.util.Iterator;
 import java.util.UUID;
 
-public abstract class Person implements Iterator<String> {
+public abstract class Person <T, U> implements Iterator<String> {
 
     enum Gender {
         male, female
@@ -22,6 +22,7 @@ public abstract class Person implements Iterator<String> {
     Gender gender;
     String birthday;
     int age;
+    Optional optional;
 
     /**
      * создание Персоны
@@ -33,7 +34,7 @@ public abstract class Person implements Iterator<String> {
      * @param birthday дата рождения
      * @param age      возраст
      */
-    public Person(String first, String last, String patron, Gender gender, String birthday, int age) {
+    public Person(String first, String last, String patron, Gender gender, String birthday, int age, Optional<T, U> opt) {
         this.uidPerson = genuid();
         this.firstName = first;
         this.lastName = last;
@@ -41,11 +42,7 @@ public abstract class Person implements Iterator<String> {
         this.gender = gender;
         this.birthday = birthday;
         this.age = age;
-    }
-
-    public Person(String first) {
-        this.uidPerson = genuid();
-        this.firstName = first;
+        this.optional = new Optional<T, U>(opt.param1, opt.param2);
     }
 
     public String getUidPerson() {
@@ -113,7 +110,7 @@ public abstract class Person implements Iterator<String> {
 
     @Override
     public boolean hasNext() {
-        return index++ < 7;
+        return index++ < 8;
     }
 
     @Override
@@ -130,23 +127,36 @@ public abstract class Person implements Iterator<String> {
                 return String.format("lastName: %s", lastName);
             case 4:
                 //return age;
-                return String.format("patronymic: %d", patronymic);
+                return String.format("patronymic: %s", patronymic);
             case 5:
                 //return gender;
                 return String.format("gender: %s", gender);
             case 6:
                 //return birthday;
                 return String.format("birthday: %s", birthday);
-            default:
+            case 7:
                 //return age;
                 return String.format("age: %d", age);
-
+            default:
+                //return opt;
+                if (optional != null) {
+                    return String.format("optional: %s - %s", optional.param1, optional.param2);
+                }
+                return String.format("optional: %s - %s", "не задано", "не задано");
         }
     }
 
     @Override
     public String toString() {
-        return String.format("<%s %s %s %s %s %s %d>", getUidPerson(), firstName, lastName, patronymic, gender, birthday, age);
+        return String.format("<%s %s %s %s %s %s %d %s %s>", getUidPerson(), firstName, lastName, patronymic, gender, birthday, age, optional.param1, optional.param2);
+    }
+
+    public void showFields(){
+        Iterator<String> fl = this;
+        while (fl.hasNext()) {
+            System.out.println(fl.next());
+        }
+
     }
 
 }
