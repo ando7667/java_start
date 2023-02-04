@@ -12,6 +12,6 @@ public class NoActionFound implements Action {
 
     @Override
     public double calculateResult(double left, double right) {
-        throw new InputMismatchException("Invalid operator sign: " + sign);
+        throw new InputMismatchException("Нет такой операции: " + sign);
     }
 }

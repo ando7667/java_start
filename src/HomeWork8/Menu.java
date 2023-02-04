@@ -63,7 +63,8 @@ public class Menu {
             System.out.println("Задайте режим вычислений:");
             showText(arr_mode);
             mode = (int) getNumber();
-            if (mode < arr_mode.length) {
+            // проверяем выход за пределы существующих режимов
+            if (mode < arr_mode.length && mode >= 0) {
                 break;
             }
         }
@@ -75,7 +76,8 @@ public class Menu {
             System.out.println("Выберите операцию:");
             showText(arr_action);
             action = (int) getNumber();
-            if (action < arr_action.length) {
+            // проверяем выход за пределы существующих операций
+            if (action < arr_action.length && action >= 0) {
                 break;
             }
         }
@@ -92,5 +94,4 @@ public class Menu {
             }
         }
     }
-
 }

@@ -1,11 +1,13 @@
 package HomeWork8.Actions;
 
 public class Complex {
-    private static final double EPs = 1e-12; // Точность вычислений. private double re, im; // Действительная и мнимая части.
+    private static final double EPs = 1e-12; // Точность вычислений
+
+    // Действительная и мнимая части.
     private double re;
     private double im;
 
-// Четыре конструктора:
+    // Четыре конструктора:
     Complex(double re, double im) {
         this.re = re;
         this.im = im;
@@ -49,7 +51,7 @@ public class Complex {
         im = z.im;
     }
 
-// Модуль и аргумент комплексного числа:
+    // Модуль и аргумент комплексного числа:
     public double mod() {
         return Math.sqrt(re * re + im * im);
     }
@@ -58,7 +60,7 @@ public class Complex {
         return Math.atan2(re, im);
     }
 
-// Проверка: действительное число?
+    // Проверка: действительное число?
     public boolean isReal() {
         return Math.abs(im) < EPs;
     }
@@ -68,7 +70,7 @@ public class Complex {
         System.out.println(re + (im < 0.0 ? "" : "+") + im + "i");
     }
 
-// Переопределение методов класса Object:
+    // Переопределение методов класса Object:
     public boolean equals(Complex z) {
         return Math.abs(re - z.re) < EPs && Math.abs(im - z.im) < EPs;
     }
@@ -77,7 +79,7 @@ public class Complex {
         return "Complex: " + re + " " + im;
     }
 
-// Методы, реализующие операции +=, -=, *=, /=
+    // Методы, реализующие операции +=, -=, *=, /=
     public void add(Complex z) {
         re += z.re;
         im += z.im;
