@@ -1,4 +1,4 @@
-package HomeWork_12;
+package HomeWork_15;
 
 public class RedBlackTree {
 
@@ -15,13 +15,17 @@ public class RedBlackTree {
         return true;
     }
 
+    public Node getRoot() {
+        return root;
+    }
+
     private Node add(int data) {
         Node x = root;
         Node y = null;
         Node n = new Node(data);
         while (x != null) {
             y = x;
-            if (x.data > data) {
+            if (x.value > data) {
                 x = x.left;
             } else {
                 x = x.right;
@@ -30,7 +34,7 @@ public class RedBlackTree {
 
         if (y == null) {
             y = n;
-        } else if (y.data > data) {
+        } else if (y.value > data) {
             n.parent = y;
             y.left = n;
         } else {
@@ -158,13 +162,22 @@ public class RedBlackTree {
 
 
     public class Node {
+        int value;
         Node left, right, parent;
-        int data;
         boolean color;
 
         public Node(int data) {
-            this.data = data;
+            this.value = data;
         }
     }
+
+    public void printTree(RedBlackTree.Node root, String sp) {
+        if (root != null) {
+            System.out.println(sp + root.value + (root.color ? "B" : "R"));
+            printTree(root.left, sp + " ");
+            printTree(root.right, sp + " ");
+        }
+    }
+
 
 }
