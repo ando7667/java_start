@@ -11,9 +11,12 @@ public class Task1 {
 
     private static int numberEvenArrayElements(int[] ar) {
         int count = 0;
-        for (int i = 0; i < ar.length - 1; i++) {
-            if (ar[i] % 2 == 0) {
-                count++;
+        // если не пустой массив
+        if (ar.length > 0) {
+            for (int i = 0; i < ar.length - 1; i++) {
+                if (ar[i] % 2 == 0) {
+                    count++;
+                }
             }
         }
         return count;
@@ -22,6 +25,7 @@ public class Task1 {
     private static int diffBetweenMaxMinArrayElements(int[] ar) {
 
         int diff = -1;
+        // если не пустой массив
         if (ar.length > 0) {
             int min = ar[0];
             int max = ar[0];
@@ -60,7 +64,7 @@ public class Task1 {
 
     public static void main(String[] args) {
 
-        int arr[] = {2, 5, 6, 0, 0, 9, 4, -2, 8, 15, 23};
+        int[] arr = {2, 5, 6, 12, 33, 0, 0, 9, 4, -2, 8, 15, 23, 0, 10};
 
         System.out.printf("\nКоличество четных элементов массива: %d", numberEvenArrayElements(arr));
         System.out.printf("\nРазница между максимальным и минимальным элементами массива: %d", diffBetweenMaxMinArrayElements(arr));
