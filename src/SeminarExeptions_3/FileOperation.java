@@ -12,7 +12,7 @@ public class FileOperation {
      */
     public static void saveUserToFile(String filename, String data) throws IOException {
 
-        String path = "./src/SeminarExeptions_3/";
+        String path = "./src/SeminarExeptions_3/Data/";
         try (FileWriter writer = new FileWriter(path + filename, true)) {
             writer.write(data);
             writer.flush();
