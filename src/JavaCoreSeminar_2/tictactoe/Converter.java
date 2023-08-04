@@ -4,13 +4,14 @@ import static JavaCoreSeminar_2.tictactoe.Game.*;
 
 public class Converter {
 
+    // для теста
     public static void main(String[] args) {
         char[][] field = new char[][]{
-                {'O', 'X', '.' },
+                {'O', 'X', '.'},
                 {'.', '.', '.'},
                 {'X', 'O', 'O'}};
 
-        int pol = convertPoleToInt(field,3);
+        int pol = convertPoleToInt(field, 3);
         System.out.println("pol= " + pol);
     }
 
@@ -20,20 +21,14 @@ public class Converter {
         for (int x = 0; x < size; x++) {
             for (int y = 0; y < size; y++) {
                 char symbol = gamepole[x][y];
-                switch (symbol){
-                    case DOT_EMPTY:
-                        value = 0;
-                        break;
-                    case DOT_HUMAN:
-                        value = 1;
-                        break;
-                    case DOT_AI:
-                        value = 2;
-                        break;
+                switch (symbol) {
+                    case DOT_EMPTY -> value = 0;
+                    case DOT_HUMAN -> value = 1;
+                    case DOT_AI -> value = 2;
                 }
                 if (pole == 0) {
                     pole = value;
-                }else {
+                } else {
                     pole = (pole << 2) + value;
                 }
             }
