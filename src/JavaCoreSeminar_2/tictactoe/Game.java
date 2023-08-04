@@ -8,12 +8,13 @@ public class Game {
     static final char DOT_HUMAN = 'X';
     static final char DOT_AI = 'O';
     static final char DOT_EMPTY = '.';
+    static final char DOT_RESERV = ' ';
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final Random RANDOM = new Random();
 
     private static char[][] field;
-    private static final int SIZE_X = 3;
+    static final int SIZE_X = 3;
     private static final int SIZE_Y = 3;
 
     public static void main(String[] args) {
@@ -42,7 +43,7 @@ public class Game {
         }
     }
 
-    private static void printField() {
+    static void printField() {
         System.out.print("\n+");
         for (int i = 0; i < SIZE_X * 2 + 1; i++) {
             System.out.print((i % 2 == 0) ? "-" : i / 2 + 1);
