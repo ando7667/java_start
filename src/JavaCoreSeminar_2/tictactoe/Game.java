@@ -1,7 +1,13 @@
 package JavaCoreSeminar_2.tictactoe;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
+
+import static JavaCoreSeminar_2.tictactoe.Converter.convertIntToPole;
+import static JavaCoreSeminar_2.tictactoe.Converter.convertPoleToInt;
+import static JavaCoreSeminar_2.tictactoe.FileOperation.loadFile;
+import static JavaCoreSeminar_2.tictactoe.FileOperation.saveIntToFile;
 
 public class Game {
 
@@ -17,7 +23,7 @@ public class Game {
     static final int SIZE_X = 3;
     private static final int SIZE_Y = 3;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         initialize();
         printField();
@@ -35,11 +41,22 @@ public class Game {
     }
 
     private static void initialize() {
-        field = new char[SIZE_X][SIZE_Y];
-        for (int x = 0; x < SIZE_X; x++) {
-            for (int y = 0; y < SIZE_Y; y++) {
-                field[x][y] = DOT_EMPTY;
+        int k;
+        do {
+            System.out.println("Загрузить сохраненную игру? ( 0-Нет/ 1-Да:)");
+            k = SCANNER.nextInt();
+        } while (k != 0 && k != 1);
+        if (k == 0) {
+            field = new char[SIZE_X][SIZE_Y];
+            for (int x = 0; x < SIZE_X; x++) {
+                for (int y = 0; y < SIZE_Y; y++) {
+                    field[x][y] = DOT_EMPTY;
+                }
             }
+        }
+        if (k == 1) {
+            int pol = loadFile();
+            field = convertIntToPole(pol, SIZE_X);
         }
     }
 
@@ -66,9 +83,19 @@ public class Game {
     }
 
     private static void humanTurn() {
+        int k;
+        do {
+            System.out.println("Cохранить игру? ( 0-Нет/ 1-Да:)");
+            k = SCANNER.nextInt();
+        } while (k != 0 && k != 1);
+        if (k == 1) {
+            int pol = convertPoleToInt(field, SIZE_X);
+            System.out.println("pol= " + pol);
+            saveIntToFile(pol);
+        }
         int x, y;
         do {
-            System.out.println("Enter the coordinates Х и Y  (1 to 3) space separated: ");
+            System.out.printf("\nВведите координаты Х и Y  (от 1 до %d) через пробел\n или s для сохранения:\n", SIZE_X);
             x = SCANNER.nextInt() - 1;
             y = SCANNER.nextInt() - 1;
         } while (!isCellValid(x, y) || !isCellEmpty(x, y));

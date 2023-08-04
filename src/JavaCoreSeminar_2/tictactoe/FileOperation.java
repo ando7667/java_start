@@ -7,7 +7,7 @@ public class FileOperation {
 
     static String path = "./src/JavaCoreSeminar_2/tictactoe/savegame.dat";
 
-    public static int loadFile() throws IOException {
+    public static int loadFile() {
         int pole = 0;
         File file = new File(path);
         try {
@@ -29,7 +29,7 @@ public class FileOperation {
      *
      * @param data данные типа int для записи
      */
-    public static void saveIntToFile(int data) throws IOException {
+    public static void saveIntToFile(int data) {
 
         try (FileWriter writer = new FileWriter(path, false)) {
             writer.write(String.valueOf(data));
