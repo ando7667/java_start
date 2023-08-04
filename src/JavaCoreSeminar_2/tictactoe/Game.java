@@ -5,16 +5,16 @@ import java.util.Scanner;
 
 public class Game {
 
-    private static final char DOT_HUMAN = 'X';
-    private static final char DOT_AI = 'O';
-    private static final char DOT_EMPTY = '.';
+    static final char DOT_HUMAN = 'X';
+    static final char DOT_AI = 'O';
+    static final char DOT_EMPTY = '.';
 
     private static final Scanner SCANNER = new Scanner(System.in);
     private static final Random RANDOM = new Random();
 
     private static char[][] field;
-    private static final int SIZE_X = 5;
-    private static final int SIZE_Y = 5;
+    private static final int SIZE_X = 3;
+    private static final int SIZE_Y = 3;
 
     public static void main(String[] args) {
 
