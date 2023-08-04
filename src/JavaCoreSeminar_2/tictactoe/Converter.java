@@ -1,11 +1,14 @@
 package JavaCoreSeminar_2.tictactoe;
 
+import java.io.IOException;
+
+import static JavaCoreSeminar_2.tictactoe.FileOperation.saveIntToFile;
 import static JavaCoreSeminar_2.tictactoe.Game.*;
 
 public class Converter {
 
     // для теста
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         char[][] field = new char[][]{
                 {'O', 'X', '.'},
                 {'.', '.', '.'},
@@ -13,6 +16,7 @@ public class Converter {
 
         int pol = convertPoleToInt(field, 3);
         System.out.println("pol= " + pol);
+        saveIntToFile(pol);
     }
 
     public static int convertPoleToInt(char[][] gamepole, int size) {
