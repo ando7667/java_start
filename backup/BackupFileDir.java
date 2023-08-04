@@ -9,12 +9,7 @@ public class BackupFileDir {
         backupDir(new File(srcDir), new File(dstDir));
     }
 
-    /**
-     * Копирование файлов из директории srcDir в директорию dstDir
-     * @param srcDir директория источник
-     * @param dstDir директория назначения
-     *
-     */
+
     public static void backupDir (File srcDir, File dstDir) throws IOException {
         // если исходный путь является директорией
         if (srcDir.isDirectory()) {
@@ -37,13 +32,6 @@ public class BackupFileDir {
         }
     }
 
-    /**
-     *  Потоковое копирование файла srcFile в файл dstFile
-     *
-     * @param srcFile файл источник
-     * @param dstFile файл приемник
-     *
-     */
     public static void copyFile(File srcFile, File dstFile) throws IOException {
         if (srcFile.isFile()) {
             InputStream in = new FileInputStream(srcFile);
