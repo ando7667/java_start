@@ -58,6 +58,7 @@ public class Converter {
         return gamepole;
     }
 
+    // для вывода результата теста
     static void printField2(char[][] field) {
         System.out.print("\n+");
         for (int i = 0; i < SIZE_X * 2 + 1; i++) {

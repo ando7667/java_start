@@ -55,8 +55,7 @@ public class Game {
             }
         }
         if (k == 1) {
-            int pol = loadFile();
-            field = convertIntToPole(pol, SIZE_X);
+            field = convertIntToPole(loadFile(), SIZE_X);
         }
     }
 
@@ -89,13 +88,11 @@ public class Game {
             k = SCANNER.nextInt();
         } while (k != 0 && k != 1);
         if (k == 1) {
-            int pol = convertPoleToInt(field, SIZE_X);
-            System.out.println("pol= " + pol);
-            saveIntToFile(pol);
+            saveIntToFile(convertPoleToInt(field, SIZE_X));
         }
         int x, y;
         do {
-            System.out.printf("\nВведите координаты Х и Y  (от 1 до %d) через пробел\n или s для сохранения:\n", SIZE_X);
+            System.out.printf("\nВведите координаты Х и Y  (от 1 до %d) через пробел:\n", SIZE_X);
             x = SCANNER.nextInt() - 1;
             y = SCANNER.nextInt() - 1;
         } while (!isCellValid(x, y) || !isCellEmpty(x, y));
