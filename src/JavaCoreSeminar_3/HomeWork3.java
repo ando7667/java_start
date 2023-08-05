@@ -1,7 +1,5 @@
 package JavaCoreSeminar_3;
 
-import AlgoritmSem_4_1.Tree;
-
 import java.util.Comparator;
 import java.util.TreeSet;
 
