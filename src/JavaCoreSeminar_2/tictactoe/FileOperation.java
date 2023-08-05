@@ -7,6 +7,11 @@ public class FileOperation {
 
     static String path = "./src/JavaCoreSeminar_2/tictactoe/savegame.dat";
 
+    /**
+     * Чтение int в виде строки из файла
+     *
+     * @return число int
+     */
     public static int loadFile() {
         int pole = 0;
         File file = new File(path);
@@ -25,7 +30,7 @@ public class FileOperation {
     }
 
     /**
-     * Запись значения int в файл
+     * Запись значения int как строки в файл
      *
      * @param data данные типа int для записи
      */

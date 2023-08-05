@@ -49,9 +49,9 @@ public class Converter {
     public static char[][] convertIntToPole(int pole, int size) {
         char[] symbols = {DOT_EMPTY, DOT_HUMAN, DOT_AI, DOT_RESERV};
         char[][] gamepole = new char[size][size];
-        for (int i = size-1; i >= 0; i-- ){
-            for (int j = size-1; j >= 0; j--) {
-                gamepole[i][j] = symbols[pole&3];
+        for (int i = size - 1; i >= 0; i--) {
+            for (int j = size - 1; j >= 0; j--) {
+                gamepole[i][j] = symbols[pole & 3];
                 pole = pole >> 2;
             }
         }
