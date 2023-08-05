@@ -28,6 +28,7 @@ public class Game {
         initialize();
         printField();
         while (true) {
+            saveGame();
             humanTurn();
             printField();
             if (gameCheck(DOT_HUMAN, "You win!"))
@@ -55,7 +56,7 @@ public class Game {
             }
         }
         if (k == 1) {
-            field = convertIntToPole(loadFile(), SIZE_X);
+            loadGame();
         }
     }
 
@@ -82,14 +83,6 @@ public class Game {
     }
 
     private static void humanTurn() {
-        int k;
-        do {
-            System.out.println("Cохранить игру? ( 0-Нет/ 1-Да:)");
-            k = SCANNER.nextInt();
-        } while (k != 0 && k != 1);
-        if (k == 1) {
-            saveIntToFile(convertPoleToInt(field, SIZE_X));
-        }
         int x, y;
         do {
             System.out.printf("\nВведите координаты Х и Y  (от 1 до %d) через пробел:\n", SIZE_X);
@@ -164,5 +157,21 @@ public class Game {
             }
         }
         return false;
+    }
+
+    private static void loadGame() {
+        field = convertIntToPole(loadFile(), SIZE_X);
+    }
+
+    private static void saveGame() {
+        int k;
+        do {
+            System.out.println("Cохранить игру? ( 0-Нет/ 1-Да:)");
+            k = SCANNER.nextInt();
+        } while (k != 0 && k != 1);
+        if (k == 1) {
+            saveIntToFile(convertPoleToInt(field, SIZE_X));
+        }
+
     }
 }
