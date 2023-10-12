@@ -1,12 +1,4 @@
-февр. 04, 2023 10:14:31 PM HomeWork8.Program main
+окт. 12, 2023 6:32:14 PM HomeWork8.Program main
 INFO: Запуск программы
-февр. 04, 2023 10:14:55 PM HomeWork8.Program main
-INFO: Были введены следующие параметры: mode: 1, action: 1, 1e число:-15.0, 2e число: 22.5, Результат:7.5
-февр. 04, 2023 10:15:13 PM HomeWork8.Program main
-INFO: Были введены следующие параметры: mode: 1, action: 2, 1e число:-88.0, 2e число: 55.0, Результат:-143.0
-февр. 04, 2023 10:15:28 PM HomeWork8.Program main
-INFO: Были введены следующие параметры: mode: 1, action: 3, 1e число:150.0, 2e число: 3.0, Результат:450.0
-февр. 04, 2023 10:15:39 PM HomeWork8.Program main
-INFO: Были введены следующие параметры: mode: 1, action: 4, 1e число:254.0, 2e число: 2.5, Результат:101.6
-февр. 04, 2023 10:15:41 PM HomeWork8.Program main
+окт. 12, 2023 6:32:30 PM HomeWork8.Program main
 INFO: Выход из программы

@@ -1,8 +1,5 @@
 package HomeWork1;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 public class Task5 {
     public static void main(String[] args) {
         String s = "A man, a plan, a canal: Panama";
@@ -15,7 +12,7 @@ public class Task5 {
         }
 
     }
-    public static boolean isPalindrome(@NotNull String s) {
+    public static boolean isPalindrome(String s) {
         int indexMin = 0;
         int indexMax = s.length() - 1;
             while ( indexMin < indexMax ) {
@@ -30,8 +27,8 @@ public class Task5 {
             return true;
     }
 
-    @Contract(pure = true)
-    public static @NotNull String filtrString(@NotNull String s) {
+
+    public static String filtrString(String s) {
         return s.replaceAll("\\P{L}+", "");
     }
 

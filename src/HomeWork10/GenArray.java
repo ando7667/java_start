@@ -2,6 +2,8 @@ package HomeWork10;
 
 import java.util.Random;
 
+;
+
 public class GenArray {
     int[] array;
 
