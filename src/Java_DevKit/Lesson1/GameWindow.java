@@ -25,8 +25,8 @@ public class GameWindow  extends JFrame {
             setResizable(false);
 
             settings = new SettingsWindow(this);
-            map = new GameMap(settings.sliderSize.getValue(), settings.sliderSize.getValue());
-            System.out.printf("вызов gameMap - x = %d, Y= %d", settings.sliderSize.getValue(), settings.sliderSize.getValue());
+            map = new GameMap(settings.sliderSize.getValue(), settings.sliderSize.getValue(), settings.sliderWin.getValue());
+            System.out.printf("вызов gameMap - x = %d, Y= %d, len_win=%d", settings.sliderSize.getValue(), settings.sliderSize.getValue(), settings.sliderWin.getValue());
 
             btnExit.addActionListener(new ActionListener() {
                 @Override

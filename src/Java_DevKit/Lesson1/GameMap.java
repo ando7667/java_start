@@ -24,16 +24,18 @@ public class GameMap extends JPanel {
     private static final String MSG_DRAW = "Ничья!";
     private int fieldSizeY;
     private int fieldSizeX;
-    private char[][] field;
+    private int len_win;
+    private int[][] field;
 
     private int panelWidth;
     private int panelHeight;
     private int cellWidth;
     private int cellHeight;
 
-    GameMap(int sizeX, int sizeY) {
+    GameMap(int sizeX, int sizeY, int len_win) {
         this.fieldSizeX = sizeX;
         this.fieldSizeY = sizeY;
+        this.len_win = len_win;
         setBackground(Color.GRAY);
         addMouseListener(new MouseAdapter() {
             @Override
@@ -41,7 +43,8 @@ public class GameMap extends JPanel {
                 update(e);
             }
         });
-        isInitialized = false;    }
+        isInitialized = false;
+    }
 
     private void update(MouseEvent e) {
         if (isGameOver || !isInitialized) return;
@@ -60,6 +63,7 @@ public class GameMap extends JPanel {
         System.out.printf("Mode: %d;\nSize: x=%d, y=%d;\nWin Length: %d", mode, fSzX, fSxY, wLen);
         this.fieldSizeX = fSzX;
         this.fieldSizeY = fSxY;
+        this.len_win = wLen;
         initMap();
         isGameOver = false;
         isInitialized = true;
@@ -137,7 +141,7 @@ public class GameMap extends JPanel {
     }
 
     void initMap() {
-        field = new char[this.fieldSizeY][this.fieldSizeX];
+        field = new int[this.fieldSizeY][this.fieldSizeX];
         for (int i = 0; i < this.fieldSizeY; i++) {
             for (int j = 0; j < this.fieldSizeX; j++) {
                 field[i][j] = EMPTY_DOT;
@@ -162,19 +166,28 @@ public class GameMap extends JPanel {
         field[y][x] = AI_DOT;
     }
 
-    private boolean checkWin(int c) {
-        if (field[0][0]==c && field[0][1]==c && field[0][2]==c) return true;
-        if (field[1][0]==c && field[1][1]==c && field[1][2]==c) return true;
-        if (field[2][0]==c && field[2][1]==c && field[2][2]==c) return true;
-
-        if (field[0][0]==c && field[1][0]==c && field[2][0]==c) return true;
-        if (field[0][1]==c && field[1][1]==c && field[2][1]==c) return true;
-        if (field[0][2]==c && field[1][2]==c && field[2][2]==c) return true;
-
-        if (field[0][0]==c && field[1][1]==c && field[2][2]==c) return true;
-        if (field[0][2]==c && field[1][1]==c && field[2][0]==c) return true;
+    private boolean checkWin(int symbol, int len_check) {
+        for (int x = 0; x < fieldSizeX; x++) {
+            for (int y = 0; y < fieldSizeY; y++) {
+                if (checkLine(x, y, 1, 0, len_check, symbol)) return true;
+                if (checkLine(x, y, 0, 1, len_check, symbol)) return true;
+                if (checkLine(x, y, 1, 1, len_check, symbol)) return true;
+                if (checkLine(x, y, 1, -1, len_check, symbol)) return true;
+            }
+        }
         return false;
     }
+
+    private boolean checkLine(int x, int y, int dx, int dy, int len_check, int symb) {
+        int max_x = x + (len_check - 1) * dx;
+        int max_y = y + (len_check - 1) * dy;
+        if (!isValidCell(max_x, max_y)) return false;
+        for (int i = 0; i < len_check; i++) {
+            if (field[y + i * dy][x + i * dx] != symb) return false;
+        }
+        return true;
+    }
+
 
     private boolean isMapFull() {
         for (int i = 0; i < this.fieldSizeY; i++) {
@@ -185,7 +198,7 @@ public class GameMap extends JPanel {
         return true;
     }
     private boolean checkEndGame(int dot, int gameOverType) {
-        if (checkWin(dot)) {
+        if (checkWin(dot, this.len_win)) {
             this.gameOverType = gameOverType;
             isGameOver = true;
             repaint();
