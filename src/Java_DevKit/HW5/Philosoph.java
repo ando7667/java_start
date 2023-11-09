@@ -26,7 +26,6 @@ public class Philosoph extends Thread {
     @Override
     public void run() {
         try {
-            System.out.println("Поток: " + Thread.currentThread().getName());
             System.out.printf("Философ %s начал размышлять\n", getName());
             while (this.count_eat > 0) {
                 if (!someone_is_eating.get()) {
