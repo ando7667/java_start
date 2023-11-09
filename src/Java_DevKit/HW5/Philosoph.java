@@ -27,17 +27,17 @@ public class Philosoph extends Thread {
     public void run() {
         try {
             System.out.printf("Философ %s начал размышлять\n", getName());
-            while (this.count_eat > 0) {
+            while (count_eat > 0) {
                 if (!someone_is_eating.get()) {
                     someone_is_eating.set(true);
-                    this.state_eat = true;
+                    state_eat = true;
                     System.out.printf("Философ %s кушает\n", getName());
                     Thread.sleep(time_eat);
-                    this.count_eat--;
-                    this.state_eat = false;
+                    count_eat--;
+                    state_eat = false;
                     someone_is_eating.set(false);
                     System.out.printf("Философ %s продолжает размышлять\n", getName());
-                    Thread.sleep(this.time_think);
+                    Thread.sleep(time_think);
                 }
             }
         } catch (InterruptedException e) {
