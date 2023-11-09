@@ -1,7 +1,9 @@
 package Java_DevKit.HW5;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Philosoph extends Thread {
-    static boolean someone_is_eating = false;
+    static volatile AtomicBoolean someone_is_eating = new AtomicBoolean(false);
     private boolean state_eat;      //  состояние true - ест, false - размышляет
     private final int time_eat;
     private final int time_think;
@@ -23,22 +25,20 @@ public class Philosoph extends Thread {
     }
     @Override
     public void run() {
-        count_eat =3;
         try {
             System.out.println("Поток: " + Thread.currentThread().getName());
             System.out.printf("Философ %s начал размышлять\n", getName());
-            while (count_eat > 0) {
-                if (!someone_is_eating) {
-                    someone_is_eating = true;
-                    state_eat = true;
+            while (this.count_eat > 0) {
+                if (!someone_is_eating.get()) {
+                    someone_is_eating.set(true);
+                    this.state_eat = true;
                     System.out.printf("Философ %s кушает\n", getName());
                     Thread.sleep(time_eat);
-                    count_eat--;
-                    state_eat = false;
-                    someone_is_eating = false;
+                    this.count_eat--;
+                    this.state_eat = false;
+                    someone_is_eating.set(false);
                     System.out.printf("Философ %s продолжает размышлять\n", getName());
-                    Thread.sleep(time_think);
-                    System.out.printf("count= %d", count_eat);
+                    Thread.sleep(this.time_think);
                 }
             }
         } catch (InterruptedException e) {
