@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Main {
     private static final int doors = 3;         // кол-во дверей;
-    private static final int games = 10;        // кол-во розыгрышей (игр)
+    private static final int games = 50;        // кол-во розыгрышей (игр)
     private static final Door[] allDoors = new Door[doors]; // массив дверей
     private static final List<Integer> selDoors= new ArrayList<>(); // список ключей массива дверей для выбора игроком
                                                                     // после открытия двери с козой ведущим
@@ -17,7 +17,7 @@ public class Main {
 
         for(int i = 1; i <= games; i++){
             init();
-            System.out.println("doors:" + Arrays.toString(allDoors));
+ //           System.out.println("doors:" + Arrays.toString(allDoors));
             int playerRnd = rnd.nextInt(doors);
             // если за дверью авто, монти прелагает перевыбор двери
             if(allDoors[playerRnd].isVal()) {
@@ -36,7 +36,16 @@ public class Main {
                 openDoorGoat(playerRnd);
                 if(rnd.nextBoolean()) {
                     // если менял выбор
-                    if(allDoors[selDoors.get(rnd.nextInt(selDoors.size()))].isVal()) {
+                    boolean close = true;
+                    int selp = rnd.nextInt(selDoors.size());
+                    while (close){
+                        if(!allDoors[selDoors.get(selp)].isClose()){
+                            selp = rnd.nextInt(selDoors.size());
+                        }else{
+                            close = false;
+                        }
+                    }
+                    if(allDoors[selDoors.get(selp)].isVal()) {
                             gameRes.put(i, "коза,менял,победа");
                             positiv++;
                     }else {
@@ -56,8 +65,8 @@ public class Main {
             System.out.println("Шаг " + data.getKey() + ": " + data.getValue());
         }
 
-        System.out.printf("\nколичество позитивных результатов = %d, или %f процентов от общего количества шагов цикла ",positiv, (double)games/positiv);
-        System.out.printf("\nколичество негативных результатов = %d, или %f процентов от общего количества шагов цикла ", negative, (double)games/negative);
+        System.out.printf("\nколичество позитивных результатов = %d, или %f процентов от общего количества шагов цикла ",positiv, (double)positiv/games*100);
+        System.out.printf("\nколичество негативных результатов = %d, или %f процентов от общего количества шагов цикла ", negative, (double)negative/games*100);
 
     }
 
@@ -71,9 +80,11 @@ public class Main {
     static void openDoorGoat(int sel){
         selDoors.clear();
         for (int s=0; s < doors; s++){
-            if(s != sel && !allDoors[s].isVal()){
-                selDoors.add(sel);
+            if(s != sel ){
                 selDoors.add(s);
+                if(!allDoors[s].isVal()){
+                    allDoors[s].setClose(false);
+                }
             }
         }
     }
