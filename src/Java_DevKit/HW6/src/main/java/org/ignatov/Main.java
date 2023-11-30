@@ -34,7 +34,6 @@ public class Main {
             }else {
                 // монти отрывает другую дверь с козой
                 openDoorGoat(playerRnd);
-                System.out.println(selDoors);
                 if(rnd.nextBoolean()) {
                     // если менял выбор
                     if(allDoors[selDoors.get(rnd.nextInt(selDoors.size()))].isVal()) {
