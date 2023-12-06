@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Employee {
     private static int count = 0;
-    private static Random rnd = new Random();
+    private static final Random rnd = new Random();
     public String name;
     public int age;
     public double salary;
