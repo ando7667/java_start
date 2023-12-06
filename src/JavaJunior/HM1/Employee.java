@@ -7,10 +7,10 @@ import java.util.Random;
 public class Employee {
     private static int count = 0;
     private static final Random rnd = new Random();
-    public String name;
-    public int age;
-    public double salary;
-    public String department;
+    String name;
+    int age;
+    double salary;
+    String department;
 
     public Employee() {
         count++;
