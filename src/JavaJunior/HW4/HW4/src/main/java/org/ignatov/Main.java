@@ -21,7 +21,7 @@ public class Main {
             agentJdbc.addRecord(db_name, "book", arrBook.get(i));
         }
 
-        agentJdbc.findRecTable(db_name, "book", "author", "Автор 7");
+        agentJdbc.findRecTable(db_name, "book", "author", "ор");
 
         agentJdbc.closedb();
 

@@ -117,7 +117,7 @@ public class AgentJdbc {
                 Statement statement = conn.createStatement();
                 statement.execute("USE " + db);
                 StringBuilder strExecute = new StringBuilder();
-                strExecute.append("SELECT * FROM " + table + " WHERE " + field + " = '" + str + "'");
+                strExecute.append("SELECT * FROM " + table + " WHERE " + field + " LIKE '%" + str + "%'");
                 ResultSet set = statement.executeQuery(strExecute.toString());
                 if (set == null) {
                     System.out.println("\nЗаписи не найдены!");
@@ -128,7 +128,7 @@ public class AgentJdbc {
                         String name = set.getString("name");
                         String author = set.getString("author");
                         String year = set.getString("year");
-                        System.out.printf("id=%d, Книга: %s, Автор: %s, год:%s", id, name, author, year);
+                        System.out.printf("\nid=%d, Книга: %s, Автор: %s, год:%s", id, name, author, year);
                     }
                 }
             } catch (SQLException e) {
