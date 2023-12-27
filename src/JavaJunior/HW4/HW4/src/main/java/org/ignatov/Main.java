@@ -36,6 +36,9 @@ public class Main {
         System.out.println("\nНайдена строка:");
         agentHibernate.findRecTable(10);
 
+        System.out.println("\nНайдены кники автора:");
+        agentHibernate.findRecsTable("author", "Автор 1");
+
         agentHibernate.discon();
 
     }

@@ -51,11 +51,11 @@ public class HbBook {
 
     @Override
     public String toString() {
-        return "HbBook{" +
+        return "\nHbBook{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", author='" + author + '\'' +
                 ", year='" + year + '\'' +
-                '}';
+                "}";
     }
 }

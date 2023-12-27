@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.lang.module.Configuration;
 import java.util.Arrays;
+import java.util.List;
 
 public class AgentHibernate {
     private Configuration config;
@@ -22,12 +23,12 @@ public class AgentHibernate {
 
     public void con() {
         session = sessionFactory.openSession();
-        System.out.println("Подключение к базе через JPA!");
+        System.out.println("\nПодключение к базе через JPA!");
     }
 
     public void discon() {
         session.close();
-        System.out.println("Отключились от базы!");
+        System.out.println("\nОтключились от базы!");
     }
 
     public void addRecTable(Object obj) {
@@ -42,6 +43,14 @@ public class AgentHibernate {
     public void findRecTable(int id){
         if (session != null) {
             System.out.println(session.get(HbBook.class, id).toString());
+        }
+    }
+
+    public void findRecsTable(String field, String val) {
+        if (session != null) {
+            List<HbBook> books = session.createQuery("select b from HbBook b where " + field + "='" + val + "'", HbBook.class)
+                    .getResultList();
+            System.out.println(books.toString());
         }
     }
 }
