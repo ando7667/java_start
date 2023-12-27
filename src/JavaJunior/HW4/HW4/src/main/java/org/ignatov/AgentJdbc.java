@@ -59,7 +59,7 @@ public class AgentJdbc {
                 statement.execute("DROP TABLE IF EXISTS " +  table);
                 StringBuilder strExecute = new StringBuilder();
                 strExecute.append("CREATE TABLE ").append(table).append("(");
-                strExecute.append("id INT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT");
+                strExecute.append("id BIGINT NOT NULL UNIQUE PRIMARY KEY AUTO_INCREMENT");
                 Field[] fields = object.getDeclaredFields();
                 for (Field field: fields) {
                     if (typeToSqlType(field.getAnnotatedType().getType()) != null) {
@@ -119,17 +119,17 @@ public class AgentJdbc {
                 StringBuilder strExecute = new StringBuilder();
                 strExecute.append("SELECT * FROM " + table + " WHERE " + field + " LIKE '%" + str + "%'");
                 ResultSet set = statement.executeQuery(strExecute.toString());
-                if (set == null) {
-                    System.out.println("\nЗаписи не найдены!");
-                } else {
+//                if (set == null) {
+//                    System.out.println("\nЗаписи не найдены!");
+ //               } else {
                     System.out.println("\nНайдены записи:");
                     while (set.next()) {
-                        int id = set.getInt("id");
+                        Long id = set.getLong("id");
                         String name = set.getString("name");
                         String author = set.getString("author");
                         String year = set.getString("year");
                         System.out.printf("\nid=%d, Книга: %s, Автор: %s, год:%s", id, name, author, year);
-                    }
+//                    }
                 }
             } catch (SQLException e) {
                 System.out.println("Что-то не так");

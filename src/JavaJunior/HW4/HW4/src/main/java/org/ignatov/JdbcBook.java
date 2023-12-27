@@ -1,8 +1,10 @@
 package org.ignatov;
 
+import java.math.BigInteger;
+
 public class JdbcBook {
     // id bigint, name varchar, author varchar
-    private static int id = 0;
+    private static int id;
     String name;
     String author;
     String year;
