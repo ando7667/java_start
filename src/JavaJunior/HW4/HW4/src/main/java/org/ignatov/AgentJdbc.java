@@ -1,6 +1,7 @@
 package org.ignatov;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.*;
 
 public class AgentJdbc {
@@ -97,12 +98,41 @@ public class AgentJdbc {
                 }
                 strExecute.delete(strExecute.length() - 2, strExecute.length());
                 strExecute.append(" )");
-                System.out.println(strExecute);
                 statement.execute(strExecute.toString());
                 System.out.printf("\nЗапись в таблицу %s добавлена!", table);
 
             } catch (SQLException | IllegalAccessException e) {
                 System.out.println("\nЗапись в таблицу не добавлена! -> " + e.getMessage());
+            }
+        }
+    }
+
+    public void findRecTable(String db, String table, String field, String find) {
+        if (conn != null && db != null && table != null && field != null) {
+            try {
+                String str = "";
+                if (find != null) {
+                    str = find;
+                }
+                Statement statement = conn.createStatement();
+                statement.execute("USE " + db);
+                StringBuilder strExecute = new StringBuilder();
+                strExecute.append("SELECT * FROM " + table + " WHERE " + field + " = '" + str + "'");
+                ResultSet set = statement.executeQuery(strExecute.toString());
+                if (set == null) {
+                    System.out.println("\nЗаписи не найдены!");
+                } else {
+                    System.out.println("\nНайдены записи:");
+                    while (set.next()) {
+                        int id = set.getInt("id");
+                        String name = set.getString("name");
+                        String author = set.getString("author");
+                        String year = set.getString("year");
+                        System.out.printf("id=%d, Книга: %s, Автор: %s, год:%s", id, name, author, year);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Что-то не так");
             }
         }
     }
