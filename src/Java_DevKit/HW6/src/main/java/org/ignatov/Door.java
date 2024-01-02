@@ -1,4 +1,4 @@
-package org.ignatov;
+package Java_DevKit.HW6.src.main.java.org.ignatov;
 
 public class Door {
     private final boolean CAR = true;

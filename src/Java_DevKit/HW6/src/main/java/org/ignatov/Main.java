@@ -1,4 +1,4 @@
-package org.ignatov;
+package Java_DevKit.HW6.src.main.java.org.ignatov;
 
 import java.util.*;
 
