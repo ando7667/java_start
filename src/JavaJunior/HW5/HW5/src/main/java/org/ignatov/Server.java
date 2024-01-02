@@ -53,24 +53,14 @@ public class Server {
                                     }
                                 } else {
                                     clients.values().stream().forEach(t -> t.getOutput().println("Групповое сообщение от Клиента [" + clientId + "]: " + clientInput));
-
-
-
                                 }
-
-
-
-
                             }
-
-
                         }
                     }
                 }).start();
             }
         }
     }
-
 }
 
 @Getter
