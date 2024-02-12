@@ -1,4 +1,4 @@
-package org.ignatov;
+package JavaJunior.HW5.src.main.java.org.ignatov;
 
 import java.io.IOException;
 import java.io.PrintWriter;
